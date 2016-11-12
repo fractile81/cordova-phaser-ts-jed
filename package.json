@@ -1,0 +1,24 @@
+{
+  "name": "cordova-phaser-ts-jed",
+  "version": "0.1.0",
+  "description": "Cordova template that provides Phaser Typescript support, plus Jed for i18n.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fractile81/cordova-phaser-ts-jed.git"
+  },
+  "keywords": [
+    "cordova:template",
+    "phaser",
+    "typescript",
+    "ts",
+    "jed",
+    "ecosystem:cordova"
+  ],
+  "author": "Craig A. Hancock",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fractile81/cordova-phaser-ts-jed/issues"
+  },
+  "homepage": "https://github.com/fractile81/cordova-phaser-ts-jed#readme"
+}

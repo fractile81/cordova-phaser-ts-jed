@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "target": "es5",
+    "sourceMap": false,
+    "rootDir": "src/ts"
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components"
+  ]
+}

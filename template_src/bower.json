@@ -1,0 +1,21 @@
+{
+  "name": "your-app-name",
+  "description": "",
+  "main": "www/index.html",
+  "authors": [
+    "Your Name <your-email@example.com>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "^2.6.2"
+  }
+}
