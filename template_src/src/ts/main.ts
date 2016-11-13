@@ -74,10 +74,10 @@ namespace App {
       height: 600,
     };
 
-    constructor(config: Object) {
+    constructor(config: Object) {``
       this.config.process(this.defaults);
       this.config.process(config);
-      this.game = new Phaser.Game(this.config.get('width'), this.config.get('height'), Phaser.AUTO, 'container', this);
+      this.game = new Phaser.Game(this.config.get("width"), this.config.get("height"), Phaser.AUTO, "container", this);
     }
 
     public preload(): void {
@@ -85,10 +85,10 @@ namespace App {
     }
 
     public create(): void {
-      this.game.state.add('Boot', App.State.Boot);
-      this.game.state.add('Preload', App.State.Preload);
+      this.game.state.add("Boot", App.State.Boot);
+      this.game.state.add("Preload", App.State.Preload);
 
-      this.game.state.start('Boot');
+      this.game.state.start("Boot");
     }
   }
 }

@@ -21,8 +21,8 @@ namespace App.State {
     }
 
     public create(): void {
-      this.game.stage.backgroundColor = '#000080';
-      this.game.state.start('Preload');
+      this.game.stage.backgroundColor = "#000080";
+      this.game.state.start("Preload");
     }
   }
 }
