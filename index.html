@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Cordova Template: Phaser Typescript with Jed by fractile81</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Cordova Template: Phaser Typescript with Jed</h1>
+        <h2>A Cordova/PhoneGap template to build apps using Phaser with Typescript, plus Jed for internationalization (i18n).</h2>
+        <a href="https://github.com/fractile81/cordova-phaser-ts-jed" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="cordova-template-for-phaser-using-typescript-and-jed" class="anchor" href="#cordova-template-for-phaser-using-typescript-and-jed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cordova Template for Phaser, using Typescript and Jed</h1>
+
+<p>A Cordova/PhoneGap template for building a Phaser game using Typescript.  Both <a href="https://slexaxton.github.io/Jed/">Jed</a> and <a href="https://github.com/mikeedwards/po2json">po2json</a> have been included to assist in internationalization (i18n) efforts.</p>
+
+<p>The workflow provided by this template will assume control of the <code>www</code> directory.  Any content added or changed in this directory manually will be overridden by the provided Grunt tasks.</p>
+
+<p>Features include:</p>
+
+<ul>
+<li>
+<a href="http://phaser.io/">Phaser</a> via <a href="https://bower.io/">Bower</a> </li>
+<li>
+<a href="http://gruntjs.com/">Grunt</a>
+
+<ul>
+<li>
+<a href="https://github.com/blai/grunt-express">Express</a> - Provides a Grunt-based server used in tandem with <code>grunt-contrib-watch</code> to provide live-reloading when debugging.</li>
+</ul>
+</li>
+<li>
+<a href="https://www.typescriptlang.org/">Typescript</a>
+
+<ul>
+<li>
+<a href="https://palantir.github.io/tslint/">TSLint</a> - Verify TypeScript against Phaser's recommended code styles.</li>
+<li>
+<a href="https://www.npmjs.com/package/typings">Typings</a> - Provides typing information for TypeScript development.</li>
+</ul>
+</li>
+<li>
+<a href="https://slexaxton.github.io/Jed/">Jed</a>
+
+<ul>
+<li>
+<a href="https://github.com/mikeedwards/po2json">po2json</a> - Convert your translation files into JSON that can be used by Jed.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="quickstart" class="anchor" href="#quickstart" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quickstart</h2>
+
+<p>To use this template with <code>cordova</code>, create a new Cordova project with the <code>--template</code> parameter.</p>
+
+<pre><code>cordova create &lt;directory&gt; &lt;project-scope&gt; &lt;project-name&gt; --template cordova-phaser-ts-jed 
+</code></pre>
+
+<p>NOTE: <code>&lt;project-scope&gt;</code> should resemble <code>com.example.&lt;directory&gt;</code>, although the decision is ultimately yours.</p>
+
+<p>Once the project has been created, run the following:</p>
+
+<pre><code>npm install
+bower install
+</code></pre>
+
+<p>After installation, all packages should be ready to use in the <code>&lt;directory&gt;</code> indicated.  You should update the generic <code>package.json</code> and <code>src/html/index.html</code> files to with the name and version of the project, as applicable.</p>
+
+<p>To initially populate the <code>www</code> directory, or update the <code>www</code> directory with any changes, use the following command:</p>
+
+<pre><code>grunt build
+</code></pre>
+
+<p>Top open the the project in your default browser, use the command:</p>
+
+<pre><code>grunt serve
+</code></pre>
+
+<p>While being served, you can use <code>F5</code> (or <code>&lt;cmd&gt;-R</code>) to reload the page in the browser.  Use <code>&lt;ctrl&gt;-C</code> on the command line to stop this task.</p>
+
+<p>Or, if you plan to actively develop your project and need live reload, use the command:</p>
+
+<pre><code>grunt debug
+</code></pre>
+
+<p>This will copy any asset or static file changes immediately, as well as recompile any changed TypeScript files.  The task will automatically reload the page opened in your browser once the changes propagate into the <code>www</code> directory.</p>
+
+<p>The page served by this task can also be reloaded in the browser, or aborted on the command line.</p>
+
+<p>If you only want to propagate changes without interacting with the browser, you can use the command:</p>
+
+<pre><code>grunt watch
+</code></pre>
+
+<h2>
+<a id="project-structure" class="anchor" href="#project-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Structure</h2>
+
+<p>This template organizes content with the following structure:</p>
+
+<ul>
+<li>
+<strong>assets</strong> - Used to store all of your project's assets.  All content will be copied into <code>www/assets</code> when the project is built.
+
+<ul>
+<li>
+<strong>.gitignore</strong> - Used to make sure the <code>assets</code> directory is created by the template.  Can be removed.</li>
+</ul>
+</li>
+<li>
+<strong>src</strong> - All source files related to your project.
+
+<ul>
+<li>
+<strong>html</strong> - All files and directories here are copied into <code>www</code> without any processing.
+
+<ul>
+<li>
+<strong>index.html</strong> - A default HTML file.</li>
+</ul>
+</li>
+<li>
+<strong>ts</strong> - All TypeScript files should be placed in this directory.
+
+<ul>
+<li>
+<strong>states</strong> - A sample directory of Phaser states.
+
+<ul>
+<li>
+<strong>boot.ts</strong> - A sample Phaser state that is called when the app is started.</li>
+<li>
+<strong>preload.ts</strong> - A sample Phaser state that is called directly after the boot state is completed.</li>
+</ul>
+</li>
+<li>
+<strong>main.ts</strong> - A sample Phaser bootstrap that loads Phaser on page load and begins the boot state. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>www</strong> - All compiled code and static files are housed here for Cordova/PhoneGap to access.
+
+<ul>
+<li>
+<strong>.gitignore</strong> - Used to make sure the <code>www</code> directory is created by the template.  Can be removed.</li>
+</ul>
+</li>
+</ul>
+
+<p>Once <code>grunt build</code> has been run, the <code>www</code> directory will have the following structure.</p>
+
+<ul>
+<li>
+<strong>assets</strong> - Copy of the base <code>assets</code> directory.</li>
+<li>
+<strong>js</strong> - All JavaScript files are copied into this directory.
+
+<ul>
+<li>
+<strong>jed.js</strong> - Needed for using the Jed library.  Copied from NPM.</li>
+<li>
+<strong>main.js</strong> - All TypeScript files are compiled and placed into this singular JavaScript file.</li>
+<li>
+<strong>phaser.js</strong> - Needed for using Phaser.  Copied from Bower.</li>
+</ul>
+</li>
+<li>
+<strong>index.html</strong> - The same file found under <code>src/html</code>.</li>
+</ul>
+
+<p>The following configuration files are provided to ease into the workflow provided by this template.</p>
+
+<ul>
+<li>
+<strong>bower.json</strong> - Bower equivalent of the NPM-based <code>package.json</code> file.</li>
+<li>
+<strong>config.json</strong> - Unused at this time.</li>
+<li>
+<strong>tsconfig.json</strong> - Configuration used when compiling TypeScript code.</li>
+<li>
+<strong>tslint.json</strong> - Configuration when using TSLint to check for code style mistakes.  Defers to Phaser's recommended settings.</li>
+<li>
+<strong>typings.json</strong> - Used by the Typings library to provide type-hinting <code>.d.ts</code> files. </li>
+</ul>
+
+<h2>
+<a id="grunt-tasks" class="anchor" href="#grunt-tasks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Grunt Tasks</h2>
+
+<p>You can always use <code>grunt -h</code> to list all available tasks.  Below is a list of customized tasks provided by this template.</p>
+
+<ul>
+<li>
+<strong>build</strong> - Clears all content out of <code>www</code>, then compiles and copies code and assets into the same directory.</li>
+<li>
+<strong>serve</strong> - Start a server and open <code>www</code> in your default browser.  Press <code>&lt;ctrl&gt;-C</code> on the command line to stop the task.</li>
+<li>
+<strong>debug</strong> - Same as <code>serve</code>, but provides live reload for the opened web page. The <code>watch</code> task is called to trigger the live reload.  Press <code>&lt;ctrl&gt;-C</code> on the command line to stop the task.</li>
+<li>
+<strong>check</strong> - Run all linters and code validation tasks.</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright 2016 Craig A. Hancock</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/fractile81/cordova-phaser-ts-jed/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/fractile81/cordova-phaser-ts-jed/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/fractile81/cordova-phaser-ts-jed"></a> is maintained by <a href="https://github.com/fractile81">fractile81</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
