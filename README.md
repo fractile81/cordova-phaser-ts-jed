@@ -1,15 +1,16 @@
 # Cordova Template for Phaser, using Typescript and Jed
 A Cordova/PhoneGap template for building a Phaser game using Typescript.  Both [Jed](https://slexaxton.github.io/Jed/) and [po2json](https://github.com/mikeedwards/po2json) have been included to assist in internationalization (i18n) efforts.
 
-The workflow provided by this template will assume control of the `www` directory.  Any content added or changed in this directory manually will be overridden by the provided Grunt tasks.
+The workflow provided by this template will assume control of the `www` directory.  Any content added or changed in this directory manually will be overridden or removed by the provided Grunt tasks.
 
 Features include:
-* [Phaser](http://phaser.io/) via [Bower](https://bower.io/) 
+* [Phaser](http://phaser.io/) 
 * [Grunt](http://gruntjs.com/)
   * [Express](https://github.com/blai/grunt-express) - Provides a Grunt-based server used in tandem with `grunt-contrib-watch` to provide live-reloading when debugging.
 * [Typescript](https://www.typescriptlang.org/)
   * [TSLint](https://palantir.github.io/tslint/) - Verify TypeScript against Phaser's recommended code styles.
   * [Typings](https://www.npmjs.com/package/typings) - Provides typing information for TypeScript development.
+  * [webpack](https://webpack.js.org/) - Combines source code and typings to compile TypeScript.
 * [Jed](https://slexaxton.github.io/Jed/)
   * [po2json](https://github.com/mikeedwards/po2json) - Convert your translation files into JSON that can be used by Jed.
 
@@ -26,7 +27,6 @@ Once the project has been created, run the following:
 
 ```
 npm install
-bower install
 ```
 
 After installation, all packages should be ready to use in the `<directory>` indicated.  You should update the generic `package.json` and `src/html/index.html` files to with the name and version of the project, as applicable.
@@ -37,13 +37,15 @@ To initially populate the `www` directory, or update the `www` directory with an
 grunt build
 ```
 
-Top open the the project in your default browser, use the command:
+Top start a server for the project, use the command:
 
 ```
 grunt serve
 ```
 
-While being served, you can use `F5` (or `<cmd>-R`) to reload the page in the browser.  Use `<ctrl>-C` on the command line to stop this task.
+This will start a server at [http://localhost:9000](http://localhost:9000) on your computer.  You can open this page in your default browser by changing the command to `grunt open serve`.
+
+While being served, you can use `F5` (or `<cmd>-R`) to reload the page in the browser.  Use `<ctrl>-C` on the command line to stop the server.
 
 Or, if you plan to actively develop your project and need live reload, use the command:
 
@@ -65,42 +67,50 @@ grunt watch
 This template organizes content with the following structure:
 
 - **assets** - Used to store all of your project's assets.  All content will be copied into `www/assets` when the project is built.
-  - **.gitignore** - Used to make sure the `assets` directory is created by the template.  Can be removed.
+  - **.npmignore** - Used to make sure the `assets` directory is created by the template.  Can be removed.
 - **src** - All source files related to your project.
   - **html** - All files and directories here are copied into `www` without any processing.
     - **index.html** - A default HTML file.
+  - **translations** - Store all `.po` files in this directory.
+    - **.npmignore** - Used to make sure the `translations` directory is created by the template.  Can be removed.
   - **ts** - All TypeScript files should be placed in this directory.
     - **states** - A sample directory of Phaser states.
       - **boot.ts** - A sample Phaser state that is called when the app is started.
       - **preload.ts** - A sample Phaser state that is called directly after the boot state is completed.
-    - **main.ts** - A sample Phaser bootstrap that loads Phaser on page load and begins the boot state. 
+      - **states.ts** - A unified include file to load all sample states.
+    - **config.ts** - A sample settings management class. 
+    - **main.ts** - A sample Phaser bootstrap that loads Phaser on page load and begins the boot state.
+    - **startup.ts** - A sample entry point for the game.
+    - **window.ts** - An interface used to expose JavaScript-based libraries to TypeScript. 
 - **www** - All compiled code and static files are housed here for Cordova/PhoneGap to access.
-  - **.gitignore** - Used to make sure the `www` directory is created by the template.  Can be removed.
+  - **.npmignore** - Used to make sure the `www` directory is created by the template.  Can be removed.
 
 Once `grunt build` has been run, the `www` directory will have the following structure.
  
 - **assets** - Copy of the base `assets` directory.
 - **js** - All JavaScript files are copied into this directory.
-  - **jed.js** - Needed for using the Jed library.  Copied from NPM.
-  - **main.js** - All TypeScript files are compiled and placed into this singular JavaScript file.
-  - **phaser.js** - Needed for using Phaser.  Copied from Bower.
+  - **bundle.js** - All TypeScript files are compiled and placed into this singular JavaScript file.
+  - **config.js** - A processed copy of the `config.json` file in the root.
+  - **jed.js** - Needed for using Jed.  Copied from NPM.
+  - **phaser.js** - Needed for using Phaser.  Copied from NPM.
 - **index.html** - The same file found under `src/html`.
 
 The following configuration files are provided to ease into the workflow provided by this template.
 
-- **bower.json** - Bower equivalent of the NPM-based `package.json` file.
 - **config.json** - Unused at this time.
 - **tsconfig.json** - Configuration used when compiling TypeScript code.
 - **tslint.json** - Configuration when using TSLint to check for code style mistakes.  Defers to Phaser's recommended settings.
-- **typings.json** - Used by the Typings library to provide type-hinting `.d.ts` files. 
+- **typings.json** - Used by the Typings library to provide type-hinting `.d.ts` files.
+- **webpack.config.js** - Configuration used by Webpack.
 
 ## Grunt Tasks
-You can always use `grunt -h` to list all available tasks.  Below is a list of customized tasks provided by this template.
+You can always use `grunt -h` to list all available tasks.  Below is a list of useful tasks provided by this template.
 
 - **build** - Clears all content out of `www`, then compiles and copies code and assets into the same directory.
-- **serve** - Start a server and open `www` in your default browser.  Press `<ctrl>-C` on the command line to stop the task.
-- **debug** - Same as `serve`, but provides live reload for the opened web page. The `watch` task is called to trigger the live reload.  Press `<ctrl>-C` on the command line to stop the task.
-- **check** - Run all linters and code validation tasks.
+- **serve** - Start a server at [http://localhost:9000](http://localhost:9000).  Press `<ctrl>-C` on the command line to stop the task.
+- **debug** - Same as `serve`, but provides live reload for the served files. The `watch` task is called to trigger the live reload.  Press `<ctrl>-C` on the command line to stop the task.
+- **lint** - Run all linters and code validation tasks.
+- **open** - Open [http://localhost:9000](http://localhost:9000) in your default browser.
 
 ## License
 Copyright 2016 Craig A. Hancock

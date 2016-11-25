@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-var path = require('path');
+import { Main } from "./main";
 
-module.exports = {
-    dirname : path.join(__dirname, 'template_src')
+// Entry point for the app
+window.onload = () => {
+  // tslint:disable-next-line:no-unused-new no-unused-variable
+  let app = new Main(window.appConfig || {});
 };

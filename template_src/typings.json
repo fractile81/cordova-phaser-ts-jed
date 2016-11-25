@@ -1,8 +1,7 @@
 {
-  "dependencies": {
-    "debug": "registry:npm/debug#2.0.0+20160723033700"
-  },
-  "globalDevDependencies": {
-    "phaser": "github:photonstorm/phaser/typescript/typings.json"
+  "globalDependencies": {
+    "cordova": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/cordova/cordova.d.ts",
+    "lodash": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/lodash/lodash.d.ts",
+    "phaser": "github:photonstorm/phaser/v2/typescript/typings.json"
   }
 }

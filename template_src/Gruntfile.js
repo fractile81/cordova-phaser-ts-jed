@@ -1,27 +1,30 @@
 /*
- Copyright 2016 Craig A. Hancock
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ * Copyright 2016 Craig A. Hancock
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-'use strict';
+var path = require("path");
+var fs = require("fs");
+
+"use strict";
 
 module.exports = function (grunt) {
     grunt.initConfig({
         clean: {
             build: [
-                'www/**/*',
-                '!www/.gitignore'
+                "./www/**/*",
+                "!./www/.gitignore"
             ]
         },
         copy: {
@@ -29,8 +32,8 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['assets/**'],
-                        dest: 'www'
+                        src: ["./assets/**", "!./assets/.npmignore", "!./assets/gitignore"],
+                        dest: path.join(".", "www")
                     }
                 ]
             },
@@ -38,120 +41,110 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'src/html',
-                        src: ['**'],
-                        dest: 'www/',
-                        filter: 'isFile'
+                        cwd: path.join(".", "src", "html"),
+                        src: ["**"],
+                        dest: path.join(".", "www"),
+                        filter: "isFile"
                     }
                 ]
             },
-            jed: {
+            libs: {
                 files: [
                     {
                         expand: true,
-                        cwd: 'node_modules/jed',
-                        src: ['jed.js'],
-                        dest: 'www/js',
-                        filter: 'isFile'
-                    }
-                ]
-            },
-            phaser: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'bower_components/phaser/build',
-                        src: ['phaser.js'],
-                        dest: 'www/js',
-                        filter: 'isFile'
+                        src: [
+                            "./node_modules/jed/jed.js",
+                            "./node_modules/phaser/build/phaser.js"
+                        ],
+                        dest: path.join(".", "www", "js"),
+                        filter: "isFile",
+                        flatten: true
                     }
                 ]
             }
         },
         express: {
-            build: {
+            default: {
                 options: {
                     port: 9000,
-                    hostname: 'localhost',
-                    bases: ['www']
-                }
-            },
-            dev: {
-                options: {
-                    port: 9000,
-                    hostname: 'localhost',
-                    bases: ['www'],
-                    livereload: true
+                    hostname: "localhost",
+                    bases: ["www"]
                 }
             }
         },
         open: {
-            build: {
-                path: 'http://localhost:<%= express.build.options.port%>'
-            },
-            dev: {
-                path: 'http://localhost:<%= express.dev.options.port%>'
+            default: {
+                path: "http://<%= express.default.options.hostname %>:<%= express.default.options.port %>"
             }
         },
         po2json: {
             options: {
-                format: 'jed',
+                format: "jed",
                 stringOnly: true
             },
             build: {
-                src: ['src/translations/**/*.po'],
-                dest: 'www/translations'
-            }
-        },
-        ts: {
-            build: {
-                tsconfig: true,
-                src: ['src/ts/**/*.ts'],
-                out: 'www/js/main.js'
+                src: ["./src/translations/**/*.po"],
+                dest: path.join(".", "www", "translations")
             }
         },
         tslint: {
             options: {
-                configuration: 'tslint.json'
+                configuration: "./tslint.json"
             },
-            files: ['src/ts/**/*.ts']
+            files: ["./src/ts/**/*.ts"]
         },
         watch: {
             assets: {
-                files: ['assets/**'],
-                tasks: ['copy:assets'],
+                files: ["./assets/**"],
+                tasks: ["copy:assets"],
+                livereload: true
+            },
+            config: {
+                files: ["./config.json"],
+                tasks: ["process-config"],
                 livereload: true
             },
             html: {
-                files: ['src/html/**'],
-                tasks: ['copy:html'],
+                files: ["./src/html/**"],
+                tasks: ["copy:html"],
                 livereload: true
             },
             po2json: {
-                files: ['src/translations/**/*.po'],
-                tasks: ['po2json:build'],
+                files: ["./src/translations/**/*.po"],
+                tasks: ["po2json:build"],
                 livereload: true
             },
             ts: {
-                files: ['src/ts/**/*.ts'],
-                tasks: ['ts:build'],
+                files: ["./src/ts/**/*.ts"],
+                tasks: ["webpack:build"],
                 livereload: true
             }
+        },
+        webpack: {
+            build: require("./webpack.config.js")
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-express');
-    grunt.loadNpmTasks('grunt-open');
-    grunt.loadNpmTasks('grunt-po2json');
-    grunt.loadNpmTasks('grunt-ts');
-    grunt.loadNpmTasks('grunt-tslint');
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-express");
+    grunt.loadNpmTasks("grunt-open");
+    grunt.loadNpmTasks("grunt-po2json");
+    grunt.loadNpmTasks("grunt-tslint");
+    grunt.loadNpmTasks("grunt-webpack");
 
-    grunt.registerTask('default', []);
-    grunt.registerTask('build', ['clean:build', 'copy', 'ts:build', 'po2json:build']);
-    grunt.registerTask('serve', ['express:build', 'open:build', 'express-keepalive']);
-    grunt.registerTask('debug', ['express:dev', 'open:dev', 'watch']);
-    grunt.registerTask('check', ['tslint']);
+    grunt.registerTask("default", []);
+    grunt.registerTask("build", ["clean:build", "copy", "webpack:build", "process-config", "po2json:build"]);
+    grunt.registerTask('serve', ['express', 'express-keepalive']);
+    grunt.registerTask('debug', ['express', 'watch']);
+    grunt.registerTask("lint", ["tslint"]);
+
+    grunt.registerTask("process-config", "Converts the config.json file into a usable JavaScript file for the app.", function () {
+        var targetPath = path.join(".", "www", "js");
+        var json = require("./config.json");
+        var target = path.join(targetPath, "config.js");
+
+        fs.writeFileSync(target, "window.appConfig = " + JSON.stringify(json) + ";");
+    });
 };

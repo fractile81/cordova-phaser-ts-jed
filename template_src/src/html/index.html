@@ -15,18 +15,27 @@
 -->
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;img-src 'self' data: content:;style-src 'self' 'unsafe-inline' data: blob:;script-src * data: blob:;">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=0, target-densitydpi=device-dpi">
 
     <title>Your App Name</title>
 
-    <script src="cordova.js"></script>
+    <!-- Fixes a problem with padding -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 
+    <script src="js/config.js"></script>
+    <script src="cordova.js"></script>
     <script src="js/phaser.js"></script>
     <script src="js/jed.js"></script>
 </head>
 <body>
     <div id="container"></div>
 
-    <script src="js/main.js"></script>
+    <script src="js/bundle.js" defer="defer"></script>
 </body>
 </html>

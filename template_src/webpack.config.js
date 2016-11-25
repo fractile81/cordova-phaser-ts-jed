@@ -14,8 +14,24 @@
  * limitations under the License.
  */
 
-var path = require('path');
-
 module.exports = {
-    dirname : path.join(__dirname, 'template_src')
+    entry: "./src/ts/startup.ts",
+    output: {
+        path: __dirname + "/www/js",
+        filename: "bundle.js"
+    },
+    resolve: {
+        extensions: [
+            "",
+            ".webpack.js",
+            ".web.js",
+            ".ts",
+            ".js"
+        ]
+    },
+    module: {
+        loaders: [
+            { test: /\.ts/, loader: "ts-loader" }
+        ]
+    }
 };

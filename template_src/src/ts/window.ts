@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-var path = require('path');
-
-module.exports = {
-    dirname : path.join(__dirname, 'template_src')
-};
+/**
+ * Any window properties you need access to in TypeScript need to be defined here as outlined.
+ */
+interface Window {
+  appConfig: any;
+  device: any;
+  StatusBar: any;
+}
