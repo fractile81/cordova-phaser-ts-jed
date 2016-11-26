@@ -93,6 +93,9 @@ module.exports = function (grunt) {
             },
             files: ["./src/ts/**/*.ts"]
         },
+        typings: {
+            install: {}
+        },
         watch: {
             assets: {
                 files: ["./assets/**"],
@@ -132,6 +135,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-open");
     grunt.loadNpmTasks("grunt-po2json");
     grunt.loadNpmTasks("grunt-tslint");
+    grunt.loadNpmTasks("grunt-typings");
     grunt.loadNpmTasks("grunt-webpack");
 
     grunt.registerTask("default", []);

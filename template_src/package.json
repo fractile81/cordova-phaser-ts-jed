@@ -5,10 +5,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "install": "typings install"
+    "install": "grunt typings:install"
   },
   "devDependencies": {
-    "cordova": "^6.4.0",
     "express": "^4.14.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -20,13 +19,14 @@
     "grunt-po2json": "^0.3.0",
     "grunt-ts": "^6.0.0-beta.3",
     "grunt-tslint": "^3.3.0",
+    "grunt-typings": "^0.1.5",
     "grunt-webpack": "^1.0.18",
     "jed": "^1.1.1",
     "po2json": "^0.4.5",
     "ts-loader": "^1.2.2",
     "tslint": "^3.15.1",
     "typescript": "^2.0.7",
-    "typings": "^1.5.0",
+    "typings": "^2.0.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
