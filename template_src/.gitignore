@@ -1,7 +1,6 @@
 .tscache/
 node_modules/
 .idea/
-bower_components/
 .baseDir.ts
 typings/
 src/ts/**/*.js

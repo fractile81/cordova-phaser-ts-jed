@@ -23,8 +23,15 @@ module.exports = function (grunt) {
     grunt.initConfig({
         clean: {
             build: [
-                "./www/**/*",
-                "!./www/.gitignore"
+                "./www/**/*"
+            ],
+            postinstall: [
+                "./assets/.gitignore",
+                "./assets/.npmignore",
+                "./src/translations/.gitignore",
+                "./src/translations/.npmignore",
+                "./www/.gitignore",
+                "./www/.npmignore"
             ]
         },
         copy: {
@@ -32,7 +39,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ["./assets/**", "!./assets/.npmignore", "!./assets/gitignore"],
+                        src: ["./assets/**"],
                         dest: path.join(".", "www")
                     }
                 ]

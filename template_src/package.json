@@ -5,7 +5,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "install": "grunt typings:install"
+    "install": "grunt clean:postinstall typings:install"
   },
   "devDependencies": {
     "express": "^4.14.0",

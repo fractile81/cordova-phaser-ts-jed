@@ -1,16 +1,16 @@
 # Cordova Template for Phaser, using Typescript and Jed
-A Cordova/PhoneGap template for building a Phaser game using Typescript.  Both [Jed](https://slexaxton.github.io/Jed/) and [po2json](https://github.com/mikeedwards/po2json) have been included to assist in internationalization (i18n) efforts.
+A Cordova/PhoneGap template for building a Phaser game using Typescript.  Both [Jed](https://slexaxton.github.io/Jed/) and [po2json](https://github.com/mikeedwards/po2json) have been included to assist in any internationalization (i18n) efforts.
 
 The workflow provided by this template will assume control of the `www` directory.  Any content added or changed in this directory manually will be overridden or removed by the provided Grunt tasks.
 
 Features include:
 * [Phaser](http://phaser.io/) 
-* [Grunt](http://gruntjs.com/)
+* [Grunt](http://gruntjs.com/) - New to Grunt? Check out [http://gruntjs.com/getting-started](http://gruntjs.com/getting-started) to see how to set it up.
   * [Express](https://github.com/blai/grunt-express) - Provides a Grunt-based server used in tandem with `grunt-contrib-watch` to provide live-reloading when debugging.
 * [Typescript](https://www.typescriptlang.org/)
   * [TSLint](https://palantir.github.io/tslint/) - Verify TypeScript against Phaser's recommended code styles.
   * [Typings](https://www.npmjs.com/package/typings) - Provides typing information for TypeScript development.
-  * [webpack](https://webpack.js.org/) - Combines source code and typings to compile TypeScript.
+  * [webpack](https://webpack.js.org/) - Combines source code and typings to compile TypeScript into a single JavaScript package.
 * [Jed](https://slexaxton.github.io/Jed/)
   * [po2json](https://github.com/mikeedwards/po2json) - Convert your translation files into JSON that can be used by Jed.
 
@@ -55,9 +55,9 @@ grunt debug
 
 This will copy any asset or static file changes immediately, as well as recompile any changed TypeScript files.  The task will automatically reload the page opened in your browser once the changes propagate into the `www` directory.
 
-The page served by this task can also be reloaded in the browser, or aborted on the command line.
+The page served by this task can also be manually reloaded in the browser, or aborted on the command line.
 
-If you only want to propagate changes without interacting with the browser, you can use the command:
+If you only want to update code changes without a server, you can use the command:
 
 ```
 grunt watch
@@ -67,12 +67,10 @@ grunt watch
 This template organizes content with the following structure:
 
 - **assets** - Used to store all of your project's assets.  All content will be copied into `www/assets` when the project is built.
-  - **.npmignore** - Used to make sure the `assets` directory is created by the template.  Can be removed.
 - **src** - All source files related to your project.
   - **html** - All files and directories here are copied into `www` without any processing.
     - **index.html** - A default HTML file.
   - **translations** - Store all `.po` files in this directory.
-    - **.npmignore** - Used to make sure the `translations` directory is created by the template.  Can be removed.
   - **ts** - All TypeScript files should be placed in this directory.
     - **states** - A sample directory of Phaser states.
       - **boot.ts** - A sample Phaser state that is called when the app is started.
@@ -83,7 +81,6 @@ This template organizes content with the following structure:
     - **startup.ts** - A sample entry point for the game.
     - **window.ts** - An interface used to expose JavaScript-based libraries to TypeScript. 
 - **www** - All compiled code and static files are housed here for Cordova/PhoneGap to access.
-  - **.npmignore** - Used to make sure the `www` directory is created by the template.  Can be removed.
 
 Once `grunt build` has been run, the `www` directory will have the following structure.
  
@@ -99,9 +96,9 @@ The following configuration files are provided to ease into the workflow provide
 
 - **config.json** - Unused at this time.
 - **tsconfig.json** - Configuration used when compiling TypeScript code.
-- **tslint.json** - Configuration when using TSLint to check for code style mistakes.  Defers to Phaser's recommended settings.
-- **typings.json** - Used by the Typings library to provide type-hinting `.d.ts` files.
-- **webpack.config.js** - Configuration used by Webpack.
+- **tslint.json** - Configuration for using TSLint to check for code style mistakes.  Defers to Phaser's recommended settings.
+- **typings.json** - Used by the Typings library to provide type-hinting `.d.ts` files in the `typings` directory.
+- **webpack.config.js** - Configuration used by webpack to package particular source files.
 
 ## Grunt Tasks
 You can always use `grunt -h` to list all available tasks.  Below is a list of useful tasks provided by this template.
@@ -119,7 +116,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+&nbsp;&nbsp;&nbsp;&nbsp;http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
