@@ -1,6 +1,6 @@
 {
   "name": "cordova-phaser-ts-jed",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Cordova template that provides Phaser Typescript support, plus Jed for i18n.",
   "main": "index.js",
   "repository": {
