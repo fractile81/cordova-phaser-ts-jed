@@ -110,7 +110,7 @@ You can always use `grunt -h` to list all available tasks.  Below is a list of u
 - **open** - Open [http://localhost:9000](http://localhost:9000) in your default browser.
 
 ## License
-Copyright 2016 Craig A. Hancock
+Copyright 2017 Craig A. Hancock
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
